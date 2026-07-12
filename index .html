@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASSOUL STYLE — Fashion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0908;
+    --black-2:#131110;
+    --charcoal:#1c1917;
+    --gold:#c9a227;
+    --gold-bright:#e8c664;
+    --gold-deep:#9a7a1c;
+    --cream:#f3ecd9;
+    --grey-line:rgba(201,162,39,0.25);
+    --font-display:'Playfair Display', serif;
+    --font-script:'Cormorant Garamond', serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:var(--font-body);
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* ---------- texture backgrounds ---------- */
+  .marble-bg{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,162,39,0.08), transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(201,162,39,0.06), transparent 45%),
+      linear-gradient(160deg, #0a0908 0%, #141210 45%, #0a0908 100%);
+  }
+  .gold-text{
+    background:linear-gradient(120deg, #9a7a1c 0%, #e8c664 35%, #fff3cf 50%, #c9a227 70%, #9a7a1c 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  /* ---------- top marquee ---------- */
+  .marquee-bar{
+    background:var(--black-2);
+    border-bottom:1px solid var(--grey-line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:7px 0;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll-left 28s linear infinite;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .marquee-track span{margin:0 2.2em;}
+  @keyframes scroll-left{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,9,8,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--grey-line);
+  }
+  .nav-wrap{
+    max-width:1240px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 24px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+  }
+  .brand img{
+    width:52px; height:52px; border-radius:50%;
+    object-fit:cover;
+    border:1px solid var(--gold);
+    box-shadow:0 0 12px rgba(201,162,39,0.35);
+  }
+  .brand-text{line-height:1.05;}
+  .brand-text .name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.04em;
+  }
+  .brand-text .tag{
+    font-family:var(--font-script);
+    font-style:italic;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:.1em;
+  }
+  nav.main-nav{display:flex; gap:32px;}
+  nav.main-nav a{
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--cream);
+    opacity:.85;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav.main-nav a::after{
+    content:'';
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--gold);
+    transition:width .25s ease;
+  }
+  nav.main-nav a:hover{opacity:1;}
+  nav.main-nav a:hover::after{width:100%;}
+
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .icon-btn{
+    background:none; border:1px solid var(--grey-line);
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); position:relative;
+    transition:border-color .2s ease;
+  }
+  .icon-btn:hover{border-color:var(--gold);}
+  .cart-count{
+    position:absolute; top:-6px; right:-6px;
+    background:var(--gold); color:var(--black);
+    font-family:var(--font-mono); font-size:10px; font-weight:600;
+    width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hamburger{display:none; background:none; border:none; color:var(--gold); font-size:22px;}
+
+  /* mobile nav drawer */
+  .mobile-nav{
+    position:fixed; inset:0 0 0 auto; width:78%; max-width:320px;
+    background:var(--black-2); z-index:200;
+    transform:translateX(100%); transition:transform .3s ease;
+    padding:24px; border-left:1px solid var(--grey-line);
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .mobile-nav.open{transform:translateX(0);}
+  .mobile-nav a{
+    font-family:var(--font-display); font-size:18px; letter-spacing:.03em;
+    border-bottom:1px solid var(--grey-line); padding-bottom:14px;
+  }
+  .mobile-nav .close-btn{align-self:flex-end; background:none; border:none; color:var(--gold); font-size:24px;}
+  .scrim{
+    position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:150;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .scrim.show{opacity:1; pointer-events:auto;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:90px 24px 110px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201,162,39,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-family:var(--font-mono);
+    font-size:11px; letter-spacing:.35em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(40px, 8vw, 84px);
+    line-height:1.02;
+    letter-spacing:-.01em;
+  }
+  .hero h1 em{
+    font-family:var(--font-script);
+    font-style:italic;
+    font-weight:500;
+    display:block;
+    font-size:.5em;
+    margin-top:6px;
+    color:var(--gold-bright);
+  }
+  .hero p{
+    max-width:520px; margin:26px auto 0;
+    font-size:15px; line-height:1.7; color:#cbc3ae;
+  }
+  .hero-ctas{display:flex; gap:16px; justify-content:center; margin-top:36px; flex-wrap:wrap;}
+  .btn-gold{
+    background:linear-gradient(120deg, var(--gold-deep), var(--gold-bright));
+    color:var(--black); font-weight:600; font-size:13px;
+    letter-spacing:.08em; text-transform:uppercase;
+    padding:15px 34px; border:none; border-radius:2px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(201,162,39,.25);}
+  .btn-outline{
+    background:transparent; color:var(--gold); border:1px solid var(--gold);
+    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    padding:15px 30px; border-radius:2px;
+  }
+
+  /* laurel divider — signature element */
+  .laurel-divider{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    margin:0 auto; padding:38px 24px; max-width:640px;
+  }
+  .laurel-divider svg{width:34px; height:34px; flex-shrink:0;}
+  .laurel-divider .line{flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+  .laurel-divider .center-dot{
+    width:6px; height:6px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 8px var(--gold);
+  }
+
+  section{padding:10px 24px 70px;}
+  .section-wrap{max-width:1240px; margin:0 auto;}
+  .section-head{text-align:center; margin-bottom:44px;}
+  .section-head .eyebrow{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:10px;
+  }
+  .section-head h2{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(26px,4vw,38px);
+  }
+
+  /* ---------- categories ---------- */
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-template-rows:180px 180px;
+    gap:14px;
+  }
+  .cat-card{
+    position:relative; border-radius:4px; overflow:hidden;
+    border:1px solid var(--grey-line);
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .cat-card.big{grid-column:span 2; grid-row:span 2;}
+  .cat-card .pattern{position:absolute; inset:0; opacity:.9;}
+  .cat-card::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 30%, rgba(0,0,0,.85) 100%);
+  }
+  .cat-card span{
+    position:relative; z-index:2;
+    font-family:var(--font-display); font-weight:600; font-size:17px;
+    color:var(--cream); letter-spacing:.02em;
+  }
+  .cat-card:hover span{color:var(--gold-bright);}
+  .pat-1{background:repeating-linear-gradient(45deg, #1c1917 0 12px, #262119 12px 24px);}
+  .pat-2{background:radial-gradient(circle, #262119 2px, #1c1917 3px) 0 0/16px 16px;}
+  .pat-3{background:repeating-linear-gradient(-45deg, #201b12 0 10px, #171310 10px 20px);}
+  .pat-4{background:linear-gradient(135deg,#1c1917, #2a2214 50%, #1c1917);}
+  .pat-5{background:repeating-linear-gradient(90deg,#191510 0 6px,#221c14 6px 12px);}
+
+  /* ---------- filters ---------- */
+  .filters{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:40px;
+  }
+  .filter-btn{
+    background:none; border:1px solid var(--grey-line); color:var(--cream);
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    padding:9px 18px; border-radius:20px; transition:all .2s ease;
+  }
+  .filter-btn.active, .filter-btn:hover{
+    border-color:var(--gold); color:var(--gold);
+  }
+
+  /* ---------- products ---------- */
+  .prod-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .prod-card{
+    background:var(--charcoal);
+    border:1px solid var(--grey-line);
+    border-radius:3px;
+    overflow:hidden;
+    position:relative;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .prod-card:hover{transform:translateY(-4px); border-color:var(--gold);}
+  .prod-thumb{height:190px; position:relative; overflow:hidden;}
+  .prod-thumb .rs-mark{
+    position:absolute; bottom:8px; right:10px;
+    font-family:var(--font-display); font-weight:700; font-size:11px;
+    color:rgba(201,162,39,0.55); letter-spacing:.1em;
+  }
+  .badge{
+    position:absolute; top:10px; left:10px; z-index:3;
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.05em;
+    padding:4px 9px; border-radius:2px; text-transform:uppercase;
+  }
+  .badge.new{background:var(--gold); color:var(--black);}
+  .badge.promo{background:var(--black); color:var(--gold); border:1px solid var(--gold);}
+  .prod-body{padding:16px; position:relative;}
+  .prod-body::before{
+    content:''; position:absolute; top:0; left:16px; right:16px;
+    border-top:1px dashed var(--grey-line);
+  }
+  .prod-body .cat-label{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+    color:var(--gold); text-transform:uppercase; opacity:.8;
+  }
+  .prod-body h3{
+    font-family:var(--font-display); font-weight:600; font-size:16px;
+    margin:6px 0 10px; line-height:1.3;
+  }
+  .prod-foot{display:flex; align-items:center; justify-content:space-between;}
+  .price{font-family:var(--font-mono); font-size:15px; color:var(--gold-bright);}
+  .add-btn{
+    background:none; border:1px solid var(--gold); color:var(--gold);
+    width:34px; height:34px; border-radius:50%;
+    font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center;
+    transition:all .2s ease;
+  }
+  .add-btn:hover{background:var(--gold); color:var(--black);}
+
+  .see-more{text-align:center; margin-top:46px;}
+
+  /* ---------- promo banner ---------- */
+  .promo-banner{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:20px;
+    background:linear-gradient(120deg, var(--charcoal), var(--black-2));
+    border:1px solid var(--gold); border-radius:4px;
+    padding:34px 40px; max-width:1240px; margin:0 auto 70px;
+  }
+  .promo-banner h3{font-family:var(--font-display); font-size:22px; margin-bottom:6px;}
+  .promo-banner p{font-size:13px; color:#cbc3ae;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--black-2);
+    border-top:1px solid var(--grey-line);
+    padding:60px 24px 0;
+  }
+  .footer-grid{
+    max-width:1240px; margin:0 auto;
+    display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:40px;
+  }
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{font-size:13px; color:#a89d80; line-height:1.7; max-width:280px;}
+  footer h4{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:16px;
+  }
+  footer ul{list-style:none;}
+  footer li{margin-bottom:11px; font-size:13.5px; color:#d8d0ba; display:flex; align-items:center; gap:9px;}
+  footer li svg{width:15px; height:15px; color:var(--gold); flex-shrink:0;}
+  .socials{display:flex; gap:10px; margin-top:6px;}
+  .socials a{
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--grey-line);
+    display:flex; align-items:center; justify-content:center; color:var(--gold);
+    transition:border-color .2s ease;
+  }
+  .socials a:hover{border-color:var(--gold);}
+  .footer-bottom{
+    border-top:1px solid var(--grey-line);
+    padding:20px 0; text-align:center;
+    font-size:11.5px; color:#7a705a; letter-spacing:.03em;
+  }
+
+  /* ---------- cart drawer ---------- */
+  .cart-drawer{
+    position:fixed; top:0; right:0; bottom:0; width:400px; max-width:92vw;
+    background:var(--black-2); border-left:1px solid var(--gold);
+    z-index:300; transform:translateX(100%); transition:transform .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 22px 18px; border-bottom:1px solid var(--grey-line);
+  }
+  .cart-head h3{font-family:var(--font-display); font-size:19px;}
+  .cart-items{flex:1; overflow-y:auto; padding:18px 22px;}
+  .cart-item{
+    display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--grey-line);
+  }
+  .cart-item .thumb{width:58px; height:58px; border-radius:3px; flex-shrink:0;}
+  .cart-item .info{flex:1;}
+  .cart-item h4{font-family:var(--font-display); font-size:14px; font-weight:600; margin-bottom:4px;}
+  .cart-item .cat-label{font-family:var(--font-mono); font-size:10px; color:var(--gold); text-transform:uppercase;}
+  .qty-row{display:flex; align-items:center; gap:10px; margin-top:8px;}
+  .qty-btn{
+    width:22px; height:22px; border:1px solid var(--grey-line); background:none; color:var(--cream);
+    border-radius:50%; font-size:13px; display:flex; align-items:center; justify-content:center;
+  }
+  .qty-row span{font-family:var(--font-mono); font-size:13px;}
+  .remove-btn{
+    background:none; border:none; color:#8a8272; font-size:11px; text-decoration:underline;
+    margin-top:8px; letter-spacing:.03em;
+  }
+  .item-price{font-family:var(--font-mono); font-size:13px; color:var(--gold-bright); white-space:nowrap;}
+  .cart-empty{text-align:center; padding:60px 20px; color:#8a8272; font-size:14px;}
+  .cart-foot{padding:20px 22px 26px; border-top:1px solid var(--grey-line);}
+  .cart-subtotal{display:flex; justify-content:space-between; margin-bottom:16px; font-family:var(--font-mono); font-size:14px;}
+  .cart-subtotal strong{color:var(--gold-bright); font-size:17px;}
+  .checkout-btn{width:100%; padding:16px;}
+  .cart-note{font-size:11px; color:#8a8272; text-align:center; margin-top:10px;}
+
+  /* ---------- gallery modal ---------- */
+  .gallery-overlay{
+    position:fixed; inset:0; background:rgba(10,9,8,0.92); z-index:500;
+    display:none; align-items:flex-start; justify-content:center;
+    overflow-y:auto; padding:60px 20px;
+  }
+  .gallery-overlay.open{display:flex;}
+  .gallery-box{max-width:1100px; width:100%;}
+  .gallery-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;}
+  .gallery-head h3{font-family:var(--font-display); color:var(--gold-bright); font-size:22px;}
+  .gallery-close{background:none; border:1px solid var(--grey-line); color:var(--gold); width:38px; height:38px; border-radius:50%; font-size:18px;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .gallery-item{
+    position:relative; border:1px solid var(--grey-line); border-radius:4px; overflow:hidden;
+    background:var(--charcoal);
+  }
+  .gallery-item img{width:100%; height:190px; object-fit:cover; display:block;}
+  .gallery-item img.gallery-logo{
+    position:absolute; top:8px; left:8px; width:26px !important; height:26px !important;
+    border-radius:50%; border:1px solid var(--gold); object-fit:cover; opacity:0.85; display:block;
+  }
+  .gallery-price-tag{
+    padding:9px 10px; font-family:var(--font-mono); font-size:13px; color:var(--gold-bright);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .gallery-add{background:none; border:1px solid var(--gold); color:var(--gold); width:26px; height:26px; border-radius:50%; font-size:14px;}
+  .gallery-add:hover{background:var(--gold); color:var(--black);}
+  @media (max-width:960px){ .gallery-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:600px){
+    .gallery-overlay{padding:30px 12px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr); gap:10px;}
+    .gallery-item img{height:150px;}
+  }
+
+  /* ---------- lightbox (zoomed photo view) ---------- */
+  .lightbox-overlay{
+    position:fixed; inset:0; background:rgba(5,4,3,0.97); z-index:600;
+    display:none; align-items:center; justify-content:center; flex-direction:column;
+  }
+  .lightbox-overlay.open{display:flex;}
+  .lightbox-back{
+    position:absolute; top:20px; left:20px; background:none; border:1px solid var(--gold);
+    color:var(--gold); padding:10px 18px; border-radius:20px; font-family:var(--font-mono);
+    font-size:12px; letter-spacing:.05em; display:flex; align-items:center; gap:8px; z-index:2;
+  }
+  .lightbox-img-wrap{max-width:90vw; max-height:80vh; display:flex; align-items:center; justify-content:center;}
+  .lightbox-img-wrap img{max-width:90vw; max-height:80vh; object-fit:contain; border-radius:4px;}
+  .lightbox-nav{position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); border:1px solid var(--gold); color:var(--gold); width:44px; height:44px; border-radius:50%; font-size:22px;}
+  .lightbox-prev{left:16px;}
+  .lightbox-next{right:16px;}
+  .lightbox-foot{margin-top:18px; display:flex; align-items:center; gap:16px;}
+  .lightbox-price{font-family:var(--font-mono); color:var(--gold-bright); font-size:16px;}
+  @media (max-width:600px){
+    .lightbox-nav{width:36px; height:36px; font-size:18px;}
+    .lightbox-back{top:12px; left:12px; padding:8px 14px; font-size:11px;}
+  }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--gold); color:var(--black); font-family:var(--font-mono);
+    font-size:12.5px; padding:12px 22px; border-radius:3px; z-index:400;
+    opacity:0; pointer-events:none; transition:all .3s ease;
+    white-space:nowrap;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:960px){
+    nav.main-nav{display:none;}
+    .hamburger{display:block;}
+    .cat-grid{grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,150px);}
+    .cat-card.big{grid-column:span 2; grid-row:span 1; height:150px;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:34px;}
+  }
+  @media (max-width:600px){
+    .nav-wrap{padding:10px 16px;}
+    .brand img{width:42px; height:42px;}
+    .brand-text .name{font-size:15px;}
+    .brand-text .tag{font-size:10px;}
+    .hero{padding:60px 18px 70px;}
+    .hero p{font-size:14px;}
+    section{padding:6px 16px 50px;}
+    .cat-grid{grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,130px); gap:10px;}
+    .cat-card{padding:12px;}
+    .cat-card span{font-size:14px;}
+    .prod-grid{grid-template-columns:1fr 1fr; gap:12px;}
+    .prod-thumb{height:130px;}
+    .prod-body{padding:11px;}
+    .prod-body h3{font-size:13px;}
+    .price{font-size:13px;}
+    .add-btn{width:28px; height:28px; font-size:15px;}
+    .promo-banner{padding:24px 22px; flex-direction:column; text-align:center;}
+    .footer-grid{grid-template-columns:1fr; gap:30px; text-align:left;}
+    .cart-drawer{width:100%; max-width:100%;}
+    .filters{gap:8px;}
+    .filter-btn{padding:7px 14px; font-size:11px;}
+    .hero-ctas{flex-direction:column; align-items:center; width:100%;}
+    .hero-ctas a, .hero-ctas button{width:100%; max-width:280px; text-align:center;}
+  }
+  @media (max-width:380px){
+    .cat-grid{grid-template-columns:1fr; grid-template-rows:repeat(5,120px);}
+    .cat-card.big{grid-column:span 1;}
+    .prod-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body class="marble-bg">
+
+  <div class="scrim" id="scrim"></div>
+
+  <!-- marquee -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>✦ LIVRAISON DAKAR EN 24H</span>
+      <span>✦ PAIEMENT ORANGE MONEY & WAVE</span>
+      <span>✦ WHATSAPP +221 78 420 05 11</span>
+      <span>✦ NOUVELLE COLLECTION DISPONIBLE</span>
+      <span>✦ LIVRAISON DAKAR EN 24H</span>
+      <span>✦ PAIEMENT ORANGE MONEY & WAVE</span>
+      <span>✦ WHATSAPP +221 78 420 05 11</span>
+      <span>✦ NOUVELLE COLLECTION DISPONIBLE</span>
+    </div>
+  </div>
+
+  <!-- header -->
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <img src="https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/logo_crop.jpg" alt="Rassoul Style logo">
+        <div class="brand-text">
+          <div class="name">RASSOUL <span class="gold-text">STYLE</span></div>
+          <div class="tag">— Fashion —</div>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="javascript:void(0)" onclick="goTo('categories')">Univers</a>
+        <a href="javascript:void(0)" onclick="goTo('produits')">Boutique</a>
+        <a href="javascript:void(0)" onclick="goTo('promo')">Promotions</a>
+        <a href="javascript:void(0)" onclick="goTo('contact')">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="cartToggle" aria-label="Panier">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="menuToggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" id="menuClose">✕</button>
+    <a href="javascript:void(0)" onclick="goTo('categories')">Univers</a>
+    <a href="javascript:void(0)" onclick="goTo('produits')">Boutique</a>
+    <a href="javascript:void(0)" onclick="goTo('promo')">Promotions</a>
+    <a href="javascript:void(0)" onclick="goTo('contact')">Contact</a>
+  </div>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">Maison Sénégalaise · Dakar</div>
+    <h1>L'élégance qui<br>s'accroche à vous<em>Rassoul Style — Fashion</em></h1>
+    <p>Costumes, boubous, bazin et pièces d'exception pensés pour ceux qui portent le style comme une signature. Livraison partout à Dakar en 24h.</p>
+    <div class="hero-ctas">
+      <a href="javascript:void(0)" onclick="goTo('produits')" class="btn-gold">Voir la boutique</a>
+      <a href="https://wa.me/221784200511" target="_blank" class="btn-outline">Commander sur WhatsApp</a>
+    </div>
+  </section>
+
+  <div class="laurel-divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="1.3"><path d="M4 20c4-1 7-5 7-11M4 20c1-4 5-7 11-7M4 20c2-6 8-9 15-8"/></svg>
+    <div class="line"></div>
+    <div class="center-dot"></div>
+    <div class="line"></div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="1.3" style="transform:scaleX(-1)"><path d="M4 20c4-1 7-5 7-11M4 20c1-4 5-7 11-7M4 20c2-6 8-9 15-8"/></svg>
+  </div>
+
+  <!-- categories -->
+  <section id="categories">
+    <div class="section-wrap">
+      <div class="section-head">
+        <div class="eyebrow">Nos univers</div>
+        <h2>Choisissez votre style</h2>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card big" onclick="filterAndScroll('Hommes')" style="background-image:url('https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/hero_img.jpg');background-size:cover;background-position:center;">
+          <span>Mode Homme</span>
+        </div>
+        <div class="cat-card" onclick="filterAndScroll('Femmes')" style="background-image:url('https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/cat_femme.jpg');background-size:cover;background-position:center;">
+          <span>Mode Femme</span>
+        </div>
+        <div class="cat-card" onclick="filterAndScroll('Bazin')" style="background-image:url('https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_00.jpg');background-size:cover;background-position:center;">
+          <span>Bazin & Wax</span>
+        </div>
+        <div class="cat-card" onclick="filterAndScroll('Enfants')" style="background-image:url('https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/cat_kids.jpg');background-size:cover;background-position:center;">
+          <span>Rassoul Kids</span>
+        </div>
+        <div class="cat-card" onclick="filterAndScroll('Accessoires')" style="background-image:url('https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_00.jpg');background-size:cover;background-position:center;">
+          <span>Accessoires</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- products -->
+  <section id="produits">
+    <div class="section-wrap">
+      <div class="section-head">
+        <div class="eyebrow">Boutique</div>
+        <h2>Tendances de la semaine</h2>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="prod-grid" id="prodGrid"></div>
+      <div class="see-more">
+        <button class="btn-outline" onclick="alert('Catalogue complet à venir — contactez-nous sur WhatsApp pour voir toutes les pièces disponibles.')">Voir toute la boutique</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="promo">
+    <div class="promo-banner">
+      <div>
+        <h3>Commande sur WhatsApp, livraison à Dakar en 24h</h3>
+        <p>Orange Money · Wave · Espèces à la livraison</p>
+      </div>
+      <a href="https://wa.me/221784200511" target="_blank" class="btn-gold">Écrire sur WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <img src="https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/logo_crop.jpg" alt="Rassoul Style" style="width:46px;height:46px;">
+          <div class="brand-text">
+            <div class="name">RASSOUL <span class="gold-text">STYLE</span></div>
+            <div class="tag">— Fashion —</div>
+          </div>
+        </div>
+        <p>La mode sénégalaise réinventée : bazin, wax et coupes modernes, pensés à Dakar pour toute la famille.</p>
+        <div class="socials">
+          <a href="https://instagram.com/tyma-diop" target="_blank" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://wa.me/221784200511" target="_blank" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.37-.5.07-1.05.1-3.15-.7-2.66-1.03-4.38-3.72-4.52-3.9-.13-.17-1.08-1.44-1.08-2.75 0-1.3.68-1.94.92-2.2.24-.27.53-.34.7-.34h.5c.16 0 .38-.03.58.45.24.55.79 1.95.86 2.09.07.14.11.3.02.48-.09.17-.14.27-.28.42-.14.15-.29.33-.42.44-.14.14-.28.28-.12.55.16.28.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.18 1.34.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.19-.27.37-.22.62-.13.26.09 1.63.77 1.9.91.28.14.46.2.53.32.07.12.07.68-.17 1.35z"/></svg></a>
+          <a href="https://tiktok.com/@tyma-diop602" target="_blank" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2c.3 2.2 1.9 3.9 4.1 4.2v3.1c-1.5-.05-2.9-.5-4.1-1.3v6.8c0 3.4-2.8 6.2-6.2 6.2S4.1 18.2 4.1 14.8s2.8-6.2 6.2-6.2c.3 0 .6.02.9.06v3.2a3 3 0 1 0 2.1 2.86V2h3.2z"/></svg></a>
+          <a href="https://snapchat.com/add/tymadiop255566" target="_blank" aria-label="Snapchat"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c3 0 5 2.2 5 5.3 0 1.1-.05 2.1.05 2.9.9-.15 1.4.55 1.4 1 0 .6-.7 1-1.5 1.3.15.6.6 1.5 1.9 1.8.3.07.5.4.35.75-.25.6-1.3.9-2.1 1-.05.35-.1.75-.3 1.05-.35.5-2.4-.15-2.85 1.1-.3.85-1.35 1.4-2.9 1.4s-2.6-.55-2.9-1.4c-.45-1.25-2.5-.6-2.85-1.1-.2-.3-.25-.7-.3-1.05-.8-.1-1.85-.4-2.1-1-.15-.35.05-.68.35-.75 1.3-.3 1.75-1.2 1.9-1.8-.8-.3-1.5-.7-1.5-1.3 0-.45.5-1.15 1.4-1 .1-.8.05-1.8.05-2.9C7 4.2 9 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Boutique</h4>
+        <ul>
+          <li>Mode Homme</li>
+          <li>Mode Femme</li>
+          <li>Bazin & Wax</li>
+          <li>Rassoul Kids</li>
+          <li>Accessoires</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Livraison</h4>
+        <ul>
+          <li>Dakar — sous 24h</li>
+          <li>Régions — sous 3 à 4 jours</li>
+          <li>Orange Money · Wave</li>
+          <li>Paiement à la livraison</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+221 78 420 05 11</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>tdiop5590@gmail.com</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>@tyma-diop</li>
+          <li>Dakar, Sénégal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Rassoul Style Fashion — Tous droits réservés</div>
+  </footer>
+
+  <!-- cart drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-head">
+      <h3>Mon <span class="gold-text">Panier</span></h3>
+      <button class="icon-btn" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-subtotal"><span>Sous-total</span><strong id="cartSubtotal">0 FCFA</strong></div>
+      <button class="btn-gold checkout-btn" onclick="checkout()">Commander sur WhatsApp</button>
+      <div class="cart-note">Livraison calculée à la confirmation</div>
+      <div class="cart-note" id="cartPorNote" style="display:none;">Certains articles sont à prix à discuter — le montant final sera confirmé sur WhatsApp</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="gallery-overlay" id="galleryOverlay">
+    <div class="gallery-box">
+      <div class="gallery-head">
+        <h3>Costume Africain Prestige — <span class="gold-text">toutes les pièces</span></h3>
+        <button class="gallery-close" id="galleryClose">✕</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-back" id="lightboxBack">← Retour</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+    <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+    <div class="lightbox-foot">
+      <span class="lightbox-price" id="lightboxPrice"></span>
+      <button class="btn-gold" style="padding:10px 20px;" id="lightboxAdd">Ajouter au panier</button>
+    </div>
+  </div>
+
+<script>
+  const products = [
+    {id:1, name:"Costume Africain Prestige", cat:"Hommes", label:"Mode Homme", price:30000, badge:"new", pat:"pat-1", gallery:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_00.jpg"},
+    {id:2, name:"Grand Boubou Prestige", cat:"Hommes", label:"Bazin & Wax", price:90000, badge:"", pat:"pat-3", gallery2:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_00.jpg"},
+    {id:3, name:"Chemise Rassoul Prestige", cat:"Hommes", label:"Mode Homme", price:8000, badge:"promo", pat:"pat-4", gallery9:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_00.jpg"},
+    {id:4, name:"Chaussures Rassoul", cat:"Hommes", label:"Accessoires", price:20000, badge:"", pat:"pat-5", gallery7:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_00.jpg"},
+    {id:5, name:"Robe Prestige", cat:"Femmes", label:"Mode Femme", price:0, priceOnRequest:true, badge:"new", pat:"pat-2", gallery6:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_00.jpg"},
+    {id:6, name:"Wax Prestige", cat:"Femmes", label:"Bazin & Wax", price:0, priceOnRequest:true, badge:"", pat:"pat-3", gallery8:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_00.jpg"},
+    {id:7, name:"Bazin Prestige", cat:"Femmes", label:"Mode Femme", price:0, priceOnRequest:true, badge:"", pat:"pat-1", gallery10:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_00.jpg"},
+    {id:8, name:"Sac Prestige", cat:"Femmes", label:"Accessoires", price:0, priceOnRequest:true, badge:"promo", pat:"pat-5", gallery11:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_00.jpg"},
+    {id:9, name:"Ensemble Enfant Traditionnel", cat:"Enfants", label:"Rassoul Kids", price:20000, badge:"new", pat:"pat-4", gallery3:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_00.jpg"},
+    {id:10, name:"Boubou Petit Prince", cat:"Enfants", label:"Rassoul Kids", price:30000, badge:"", pat:"pat-2"},
+    {id:11, name:"Sacoche Cuir Rassoul", cat:"Accessoires", label:"Accessoires", price:20000, badge:"", pat:"pat-5", gallery4:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_00.jpg"},
+    {id:12, name:"Lunettes Édition Dorée", cat:"Accessoires", label:"Accessoires", price:15000, badge:"promo", pat:"pat-1", gallery5:true, img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_00.jpg"},
+  ];
+
+  let activeFilter = "Tous";
+  let cart = [];
+
+  const filtersEl = document.getElementById('filters');
+  const cats = ["Tous","Hommes","Femmes","Bazin","Enfants","Accessoires"];
+  filtersEl.innerHTML = cats.map(c => `<button class="filter-btn ${c==='Tous'?'active':''}" data-cat="${c}">${c}</button>`).join('');
+  filtersEl.addEventListener('click', e=>{
+    const btn = e.target.closest('.filter-btn');
+    if(!btn) return;
+    activeFilter = btn.dataset.cat;
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts();
+  });
+
+  function filterAndScroll(cat){
+    activeFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.dataset.cat===cat));
+    renderProducts();
+    document.getElementById('produits').scrollIntoView({behavior:'smooth'});
+  }
+
+  function goTo(sectionId){
+    const el = document.getElementById(sectionId);
+    if(el) el.scrollIntoView({behavior:'smooth'});
+    closeMobile();
+  }
+
+  function fmt(n){ return n.toLocaleString('fr-FR').replace(/,/g,' ') + ' FCFA'; }
+  function fmtPrice(p){ return p.priceOnRequest ? 'À discuter' : fmt(p.price); }
+
+  function renderProducts(){
+    const grid = document.getElementById('prodGrid');
+    const list = activeFilter === "Tous" ? products : products.filter(p=>p.cat===activeFilter);
+    grid.innerHTML = list.map(p => `
+      <div class="prod-card">
+        <div class="prod-thumb ${p.img ? '' : p.pat}" ${p.img || p.gallery || p.gallery2 || p.gallery3 || p.gallery4 || p.gallery5 || p.gallery6 || p.gallery7 || p.gallery8 || p.gallery9 || p.gallery10 || p.gallery11 ? `style="${p.img ? `background-image:url('${p.img}');background-size:cover;background-position:center;` : ''}${(p.gallery || p.gallery2 || p.gallery3 || p.gallery4 || p.gallery5 || p.gallery6 || p.gallery7 || p.gallery8 || p.gallery9 || p.gallery10 || p.gallery11) ? 'cursor:pointer;' : ''}"` : ''} ${(p.gallery || p.gallery2 || p.gallery3 || p.gallery4 || p.gallery5 || p.gallery6 || p.gallery7 || p.gallery8 || p.gallery9 || p.gallery10 || p.gallery11) ? `onclick="openGallery(${p.id})"` : ''}>
+          ${p.badge ? `<div class="badge ${p.badge}">${p.badge==='new'?'Nouveau':'Promo'}</div>` : ''}
+          <div class="rs-mark">RS</div>
+        </div>
+        <div class="prod-body">
+          <div class="cat-label">${p.label}</div>
+          <h3>${p.name}</h3>
+          <div class="prod-foot">
+            <span class="price">${fmtPrice(p)}</span>
+            <button class="add-btn" onclick="addToCart(${p.id})">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderProducts();
+
+  function addToCart(id){
+    const prod = products.find(p=>p.id===id);
+    const existing = cart.find(c=>c.id===id);
+    if(existing){ existing.qty++; } else { cart.push({...prod, qty:1}); }
+    renderCart();
+    showToast(prod.name + " ajouté au panier");
+    openCart();
+  }
+
+  function changeQty(id, delta){
+    const item = cart.find(c=>c.id===id);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){ cart = cart.filter(c=>c.id!==id); }
+    renderCart();
+  }
+
+  function removeItem(id){
+    cart = cart.filter(c=>c.id!==id);
+    renderCart();
+  }
+
+  function renderCart(){
+    const itemsEl = document.getElementById('cartItems');
+    const countEl = document.getElementById('cartCount');
+    const subtotalEl = document.getElementById('cartSubtotal');
+    const totalQty = cart.reduce((s,c)=>s+c.qty,0);
+    countEl.textContent = totalQty;
+    const subtotal = cart.reduce((s,c)=>s+c.qty*c.price,0);
+    subtotalEl.textContent = fmt(subtotal);
+    document.getElementById('cartPorNote').style.display = cart.some(c=>c.priceOnRequest) ? 'block' : 'none';
+
+    if(cart.length===0){
+      itemsEl.innerHTML = `<div class="cart-empty">Votre panier est vide.<br>Ajoutez une pièce Rassoul Style.</div>`;
+      return;
+    }
+    itemsEl.innerHTML = cart.map(c => `
+      <div class="cart-item">
+        <div class="thumb ${c.img ? '' : c.pat}" ${c.img ? `style="background-image:url('${c.img}');background-size:cover;background-position:center;"` : ''}></div>
+        <div class="info">
+          <h4>${c.name}</h4>
+          <div class="cat-label">${c.label}</div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button>
+            <span>${c.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${c.id},1)">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${c.id})">Retirer</button>
+        </div>
+        <div class="item-price">${c.priceOnRequest ? 'À discuter' : fmt(c.qty*c.price)}</div>
+      </div>
+    `).join('');
+  }
+  renderCart();
+
+  function openCart(){
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('scrim').classList.add('show');
+  }
+  function closeCart(){
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('scrim').classList.remove('show');
+  }
+  document.getElementById('cartToggle').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+
+  function checkout(){
+    if(cart.length===0){ showToast("Votre panier est vide"); return; }
+    const lines = cart.map(c => `${c.qty}x ${c.name} — ${c.priceOnRequest ? 'À discuter' : fmt(c.qty*c.price)}`).join('%0A');
+    const subtotal = cart.reduce((s,c)=>s+c.qty*c.price,0);
+    const msg = `Bonjour Rassoul Style, je souhaite commander :%0A${lines}%0A%0ASous-total : ${fmt(subtotal)}`;
+    window.open(`https://wa.me/221784200511?text=${msg}`, '_blank');
+  }
+
+  let toastTimer;
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+  }
+
+  const logoDataUri = "https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/logo_crop.jpg";
+  const galleryImages = [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_00.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_01.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_02.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_03.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_04.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_05.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_06.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_07.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_08.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_09.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_10.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_11.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_12.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_13.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_14.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_15.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_16.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_17.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_18.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_19.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_20.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_21.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_22.jpg", price:30000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g_23.jpg", price:30000}];
+
+  const galleryData = {
+    1: {
+      title: "Costume Africain Prestige — toutes les pièces",
+      name: "Costume Africain Prestige",
+      label: "Mode Homme",
+      cartOffset: 1000,
+      items: galleryImages
+    },
+    2: {
+      title: "Grand Boubou Prestige — toutes les pièces",
+      name: "Grand Boubou Prestige",
+      label: "Bazin & Wax",
+      cartOffset: 2000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_00.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_01.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_02.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_03.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_04.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_05.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_06.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_07.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_08.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_09.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_10.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_11.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_12.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_13.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_14.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_15.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_16.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_17.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_18.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_19.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_20.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_21.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_22.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_23.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_24.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_25.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_26.jpg", price:90000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/g2_27.jpg", price:90000}]
+    }
+  ,
+    9: {
+      title: "Ensemble Enfant Traditionnel — toutes les pièces",
+      name: "Ensemble Enfant Traditionnel",
+      label: "Rassoul Kids",
+      cartOffset: 9000,
+      skipWatermark: true,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_00.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_01.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_02.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_03.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_04.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_05.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_06.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_07.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_08.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_09.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_10.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/e_11.jpg", price:20000}]
+    }
+  ,
+    11: {
+      title: "Sacoche Cuir Rassoul — toutes les pièces",
+      name: "Sacoche Cuir Rassoul",
+      label: "Accessoires",
+      cartOffset: 11000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_00.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_01.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_02.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_03.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_04.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_05.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_06.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_07.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_08.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_09.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_10.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_11.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_12.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_13.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_14.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_15.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_16.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_17.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/s_18.jpg", price:20000}]
+    }
+  ,
+    12: {
+      title: "Lunettes Édition Dorée — toutes les pièces",
+      name: "Lunettes Édition Dorée",
+      label: "Accessoires",
+      cartOffset: 12000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_00.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_01.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_02.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_03.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_04.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_05.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_06.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_07.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_08.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_09.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_10.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_11.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_12.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_13.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_14.jpg", price:15000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/l_15.jpg", price:15000}]
+    }
+  ,
+    5: {
+      title: "Robe Prestige — toutes les pièces",
+      name: "Robe Prestige",
+      label: "Mode Femme",
+      cartOffset: 5000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_00.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_01.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_02.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_03.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_04.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_05.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_06.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_07.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_08.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_09.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_10.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_11.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_12.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_13.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_14.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_15.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_16.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_17.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_18.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_19.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_20.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_21.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_22.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_23.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_24.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_25.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_26.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_27.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_28.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_29.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_30.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_31.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_32.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_33.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_34.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_35.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_36.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_37.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_38.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_39.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_40.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_41.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_42.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_43.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_44.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_45.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_46.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_47.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_48.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_49.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_50.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_51.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_52.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_53.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_54.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_55.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_56.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_57.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_58.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_59.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_60.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_61.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_62.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_63.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/r_64.jpg", priceOnRequest:true}]
+    }
+  ,
+    4: {
+      title: "Chaussures Rassoul — toutes les pièces",
+      name: "Chaussures Rassoul",
+      label: "Accessoires",
+      cartOffset: 4000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_00.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_01.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_02.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_03.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_04.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_05.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_06.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_07.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_08.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_09.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_10.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_11.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_12.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_13.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_14.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_15.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_16.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_17.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_18.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_19.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_20.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_21.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_22.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_23.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_24.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_25.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_26.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_27.jpg", price:20000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/c_28.jpg", price:20000}]
+    }
+  ,
+    6: {
+      title: "Wax Prestige — toutes les pièces",
+      name: "Wax Prestige",
+      label: "Bazin & Wax",
+      cartOffset: 6000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_00.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_01.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_02.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_03.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_04.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_05.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_06.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_07.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_08.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_09.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_10.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_11.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_12.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_13.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_14.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_15.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_16.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_17.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_18.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_19.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_20.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_21.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_22.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_23.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_24.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_25.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_26.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_27.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_28.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_29.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_30.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_31.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_32.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_33.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_34.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_35.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_36.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_37.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_38.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_39.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_40.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_41.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_42.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_43.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_44.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_45.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_46.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_47.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_48.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_49.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_50.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_51.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_52.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_53.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_54.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_55.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_56.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_57.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_58.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_59.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_60.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_61.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_62.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_63.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_64.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_65.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_66.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_67.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_68.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_69.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_70.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_71.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_72.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_73.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_74.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_75.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_76.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_77.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_78.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_79.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_80.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_81.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_82.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_83.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_84.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/w_85.jpg", priceOnRequest:true}]
+    }
+  ,
+    3: {
+      title: "Chemise Rassoul Prestige — toutes les pièces",
+      name: "Chemise Rassoul Prestige",
+      label: "Mode Homme",
+      cartOffset: 3000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_00.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_01.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_02.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_03.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_04.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_05.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_06.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_07.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_08.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_09.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_10.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_11.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_12.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_13.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_14.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_15.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_16.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_17.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_18.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_19.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_20.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_21.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_22.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_23.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_24.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_25.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_26.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_27.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_28.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_29.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_30.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_31.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_32.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_33.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_34.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_35.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_36.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_37.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_38.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_39.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_40.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_41.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_42.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_43.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_44.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_45.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_46.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_47.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_48.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_49.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_50.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_51.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_39.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_53.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_40.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_55.jpg", price:8000},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/ch_56.jpg", price:8000}]
+    }
+  ,
+    7: {
+      title: "Bazin Prestige — toutes les pièces",
+      name: "Bazin Prestige",
+      label: "Mode Femme",
+      cartOffset: 7000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_00.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_01.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_02.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_03.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_04.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_05.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_06.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_07.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_08.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_09.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_10.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_11.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_12.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_13.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_14.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_15.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_16.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_17.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_18.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_19.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_20.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_21.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_22.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_23.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_24.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_25.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_26.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_27.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_28.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_29.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_30.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_31.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_32.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_33.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_34.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_35.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_36.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_37.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_38.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_39.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_40.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_41.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_42.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_43.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_44.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_45.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_46.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_47.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_48.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_49.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/bp_50.jpg", priceOnRequest:true}]
+    }
+  ,
+    8: {
+      title: "Sac Prestige — toutes les pièces",
+      name: "Sac Prestige",
+      label: "Accessoires",
+      cartOffset: 8000,
+      items: [{img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_00.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_01.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_02.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_03.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_04.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_05.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_06.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_07.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_08.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_09.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_10.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_11.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_12.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_13.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_14.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_15.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_16.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_17.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_18.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_19.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_20.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_21.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_22.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_23.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_24.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_25.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_26.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_27.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_28.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_29.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_30.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_31.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_32.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_33.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_34.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_35.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_36.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_37.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_38.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_39.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_40.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_41.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_42.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_43.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_44.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_45.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_46.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_47.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_48.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_49.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_50.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_51.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_52.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_53.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_54.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_55.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_56.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_57.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_58.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_59.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_60.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_61.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_62.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_63.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_64.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_65.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_66.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_67.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_68.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_69.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_70.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_71.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_72.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_73.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_74.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_75.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_76.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_77.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_78.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_79.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_80.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_81.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_82.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_83.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_84.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_85.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_86.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_87.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_88.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_89.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_90.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_91.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_92.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_93.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_94.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_95.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_96.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_97.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_98.jpg", priceOnRequest:true},
+    {img:"https://raw.githubusercontent.com/rassoul01-byte/rassoul-style-images/main/sp_99.jpg", priceOnRequest:true}]
+    }
+  };
+  let currentGallery = 1;
+  renderGallery();
+
+  function renderGallery(){
+    const grid = document.getElementById('galleryGrid');
+    const g = galleryData[currentGallery];
+    document.querySelector('.gallery-head h3').innerHTML = g.name + ' — <span class="gold-text">toutes les pièces</span>';
+    grid.innerHTML = g.items.map((item, idx) => `
+      <div class="gallery-item">
+        <img src="${item.img}" alt="${g.name}" onclick="openLightbox(${idx})" style="cursor:pointer;">
+        ${g.skipWatermark ? '' : `<img class="gallery-logo" src="${logoDataUri}" alt="Rassoul Style">`}
+        <div class="gallery-price-tag">
+          <span>${fmtPrice(item)}</span>
+          <button class="gallery-add" onclick="addGalleryToCart(${idx})">+</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  let lightboxIndex = 0;
+
+  function openLightbox(idx){
+    lightboxIndex = idx;
+    renderLightbox();
+    document.getElementById('lightboxOverlay').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightboxOverlay').classList.remove('open');
+  }
+  function renderLightbox(){
+    const g = galleryData[currentGallery];
+    const item = g.items[lightboxIndex];
+    document.getElementById('lightboxImg').src = item.img;
+    document.getElementById('lightboxPrice').textContent = fmtPrice(item);
+  }
+  function lightboxPrev(){
+    const g = galleryData[currentGallery];
+    lightboxIndex = (lightboxIndex - 1 + g.items.length) % g.items.length;
+    renderLightbox();
+  }
+  function lightboxNext(){
+    const g = galleryData[currentGallery];
+    lightboxIndex = (lightboxIndex + 1) % g.items.length;
+    renderLightbox();
+  }
+  document.getElementById('lightboxBack').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', lightboxPrev);
+  document.getElementById('lightboxNext').addEventListener('click', lightboxNext);
+  document.getElementById('lightboxAdd').addEventListener('click', ()=>{ addGalleryToCart(lightboxIndex); });
+  document.getElementById('lightboxOverlay').addEventListener('click', (e)=>{
+    if(e.target.id === 'lightboxOverlay') closeLightbox();
+  });
+
+  function openGallery(productId){
+    currentGallery = productId;
+    renderGallery();
+    document.getElementById('galleryOverlay').classList.add('open');
+  }
+  function closeGallery(){
+    document.getElementById('galleryOverlay').classList.remove('open');
+  }
+  document.getElementById('galleryClose').addEventListener('click', closeGallery);
+  document.getElementById('galleryOverlay').addEventListener('click', (e)=>{
+    if(e.target.id === 'galleryOverlay') closeGallery();
+  });
+
+  function addGalleryToCart(idx){
+    const g = galleryData[currentGallery];
+    const item = g.items[idx];
+    const cartId = g.cartOffset + idx;
+    const existing = cart.find(c=>c.id===cartId);
+    if(existing){ existing.qty++; }
+    else { cart.push({id:cartId, name:g.name, label:g.label, price:item.price||0, priceOnRequest:!!item.priceOnRequest, img:item.img, qty:1}); }
+    renderCart();
+    showToast(g.name + " ajouté au panier");
+    openCart();
+  }
+
+  // mobile nav
+  const mobileNav = document.getElementById('mobileNav');
+  const scrim = document.getElementById('scrim');
+  document.getElementById('menuToggle').addEventListener('click', ()=>{
+    mobileNav.classList.add('open'); scrim.classList.add('show');
+  });
+  document.getElementById('menuClose').addEventListener('click', closeMobile);
+  scrim.addEventListener('click', ()=>{ closeMobile(); closeCart(); });
+  function closeMobile(){ mobileNav.classList.remove('open'); scrim.classList.remove('show'); }
+  document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click', closeMobile));
+</script>
+
+</body>
+</html>
